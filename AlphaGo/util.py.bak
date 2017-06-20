@@ -28,11 +28,11 @@ def confirm(prompt=None, resp=False):
         prompt = '%s [%s]|%s: ' % (prompt, 'n', 'y')
 
     while True:
-        ans = input(prompt)
+        ans = raw_input(prompt)
         if not ans:
             return resp
         if ans not in ['y', 'Y', 'n', 'N']:
-            print('please enter y or n.')
+            print 'please enter y or n.'
             continue
         if ans == 'y' or ans == 'Y':
             return True
@@ -188,10 +188,10 @@ def plot_network_output(scores, board, history, out_directory, output_file,
         import matplotlib.pyplot as plt
         import matplotlib.cm as cm
     except ImportError as e:
-        print((
+        print(
             'Failed to import matplotlib. This is an optional dependency of ' +
             'the RocAlphaGo project, so it is not included in the requirements file. ' +
-            'You must install matplotlib yourself to use the plotting functions.'))
+            'You must install matplotlib yourself to use the plotting functions.')
         raise e
 
     from distutils.version import StrictVersion
@@ -212,13 +212,13 @@ def plot_network_output(scores, board, history, out_directory, output_file,
     ax.tick_params(axis='both', length=0, width=0)
     # Western notation has the origin at the lower-left
     if western_column_notation:
-        plt.xticks(list(range(1, board.size + 1)), list(range(1, board.size + 1)))
-        plt.yticks(list(range(1, board.size + 1)), reversed(list(range(1, board.size + 1))))
+        plt.xticks(range(1, board.size + 1), range(1, board.size + 1))
+        plt.yticks(range(1, board.size + 1), reversed(range(1, board.size + 1)))
     # Traditional has the origin at the upper-left and uses letters minus 'I' along the top
     else:
         ax.xaxis.tick_top()
-        plt.xticks(list(range(1, board.size + 1)), [x for x in LETTERS[:board.size + 1] if x != 'I'])
-        plt.yticks(list(range(1, board.size + 1)), list(range(1, board.size + 1)))
+        plt.xticks(range(1, board.size + 1), [x for x in LETTERS[:board.size + 1] if x != 'I'])
+        plt.yticks(range(1, board.size + 1), range(1, board.size + 1))
 
     # Draw grid
     for i in range(board.size):

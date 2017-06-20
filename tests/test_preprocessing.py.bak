@@ -1,5 +1,5 @@
 import unittest
-from . import parseboard
+import parseboard
 import numpy as np
 import AlphaGo.go as go
 from AlphaGo.go import GameState

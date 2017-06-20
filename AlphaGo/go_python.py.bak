@@ -119,8 +119,8 @@ class GameState(object):
         """Like _neighbors but for diagonal positions
         """
         (x, y) = position
-        return list(filter(self._on_board, [(x - 1, y - 1), (x + 1, y + 1),
-                                       (x + 1, y - 1), (x - 1, y + 1)]))
+        return filter(self._on_board, [(x - 1, y - 1), (x + 1, y + 1),
+                                       (x + 1, y - 1), (x - 1, y + 1)])
 
     def _update_neighbors(self, position):
         """A private helper function to update self.group_sets and self.liberty_sets
@@ -486,7 +486,7 @@ class GameState(object):
         # Count number of positions filled by each player, plus 1 for each eye-ish space owned
         score_white = np.sum(self.board == WHITE)
         score_black = np.sum(self.board == BLACK)
-        empties = list(zip(*np.where(self.board == EMPTY)))
+        empties = zip(*np.where(self.board == EMPTY))
         for empty in empties:
             # Check that all surrounding points are of one color
             if self.is_eyeish(empty, BLACK):
@@ -589,7 +589,7 @@ class GameState(object):
 
         # active player colour
         pattern_hash = 2
-        pattern_hash += int(self.current_player)
+        pattern_hash += long(self.current_player)
         pattern_hash *= 10
 
         # 8 surrounding position colours
@@ -662,7 +662,7 @@ class GameState(object):
         # hash pattern
 
         # location
-        pattern_hash = xDis + 3
+        pattern_hash = xDis + 3L
         pattern_hash *= 10
         pattern_hash += yDis + 3
 

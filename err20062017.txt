@@ -1,0 +1,226 @@
+via Anaconda 3 64-bit Python 3.5 on Windows 10
+Using TensorFlow backend.
+test_directory_conversion (tests.test_game_converter.TestCmdlineConverter) ... C:\Users\1\Anaconda3_4_2_0\envs\keras2\lib\site-packages\h5py\_hl\dataset.py:76: DeprecationWarning: numpy boolean negative, the `-` operator, is deprecated, use the `~` operator or the logical_not function instead.
+  if isinstance(chunks, tuple) and (-numpy.array([ i>=j for i,j in zip(tmp_shape,chunks) if i is not None])).any():
+ok
+test_directory_walk (tests.test_game_converter.TestCmdlineConverter) ... ok
+test_ab_aw (tests.test_game_converter.TestSGFLoading) ... ok
+test_liberties_after_capture (tests.test_gamestate.TestCacheSets) ... ok
+test_eye_recursion (tests.test_gamestate.TestEye) ... ok
+test_true_eye (tests.test_gamestate.TestEye) ... ok
+test_positional_superko (tests.test_gamestate.TestKo) ... FAIL
+test_snapback_is_not_ko (tests.test_gamestate.TestKo) ... ok
+test_standard_ko (tests.test_gamestate.TestKo) ... ok
+test_run_commands (tests.test_gtp_wrapper.TestGTPProcess) ... ERROR
+test_breaker_1 (tests.test_ladders.TestLadder) ... ok
+test_capture_to_escape_1 (tests.test_ladders.TestLadder) ... ok
+test_captured_1 (tests.test_ladders.TestLadder) ... ok
+test_missing_ladder_breaker_1 (tests.test_ladders.TestLadder) ... ok
+test_snapback_1 (tests.test_ladders.TestLadder) ... ok
+test_throw_in_1 (tests.test_ladders.TestLadder) ... ok
+test_two_captures (tests.test_ladders.TestLadder) ... ok
+test_two_escapes (tests.test_ladders.TestLadder) ... ok
+test_get_move (tests.test_mcts.TestMCTS) ... Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\1\Anaconda3_4_2_0\envs\keras2\lib\multiprocessing\spawn.py", line 106, in spawn_main
+    exitcode = _main(fd)
+  File "C:\Users\1\Anaconda3_4_2_0\envs\keras2\lib\multiprocessing\spawn.py", line 116, in _main
+    self = pickle.load(from_parent)
+EOFError: Ran out of input
+ok
+test_playout (tests.test_mcts.TestMCTS) ... ok
+test_playout_with_pass (tests.test_mcts.TestMCTS) ... ok
+test_update_with_move (tests.test_mcts.TestMCTS) ... ok
+test_expansion (tests.test_mcts.TestTreeNode) ... ok
+test_selection (tests.test_mcts.TestTreeNode) ... ok
+test_update (tests.test_mcts.TestTreeNode) ... ok
+test_update_recursive (tests.test_mcts.TestTreeNode) ... ok
+test_extreme_temperature_is_numerically_stable (tests.test_players.TestProbabilisticPolicyPlayer) ... ok
+test_temperature_increases_entropy (tests.test_players.TestProbabilisticPolicyPlayer) ... ok
+test_batch_eval_state (tests.test_policy.TestCNNPolicy) ... C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\utils\generic_utils.py:135: DeprecationWarning: inspect.getargspec() is deprecated, use inspect.signature() instead
+  arg_spec = inspect.getargspec(cls.from_config)
+ok
+test_default_policy (tests.test_policy.TestCNNPolicy) ... ok
+test_output_size (tests.test_policy.TestCNNPolicy) ... ok
+test_save_load (tests.test_policy.TestCNNPolicy) ... ok
+test_greedy_player (tests.test_policy.TestPlayers) ... ok
+test_probabilistic_player (tests.test_policy.TestPlayers) ... ok
+test_sensible_greedy (tests.test_policy.TestPlayers) ... ok
+test_sensible_probabilistic (tests.test_policy.TestPlayers) ... ok
+test_batch_eval_state (tests.test_policy.TestResnetPolicy) ... ok
+test_default_policy (tests.test_policy.TestResnetPolicy) ... ok
+test_save_load (tests.test_policy.TestResnetPolicy) ... ok
+test_feature_concatenation (tests.test_preprocessing.TestPreprocessingFeatures) ... ok
+test_get_board (tests.test_preprocessing.TestPreprocessingFeatures) ... ok
+test_get_capture_size (tests.test_preprocessing.TestPreprocessingFeatures) ... ok
+test_get_ladder_capture (tests.test_preprocessing.TestPreprocessingFeatures) ... ok
+test_get_ladder_escape (tests.test_preprocessing.TestPreprocessingFeatures) ... ok
+test_get_legal (tests.test_preprocessing.TestPreprocessingFeatures) ... ok
+test_get_liberties (tests.test_preprocessing.TestPreprocessingFeatures) ... ok
+test_get_liberties_after (tests.test_preprocessing.TestPreprocessingFeatures) ... ok
+test_get_liberties_after_cap (tests.test_preprocessing.TestPreprocessingFeatures) ... ok
+test_get_self_atari_size (tests.test_preprocessing.TestPreprocessingFeatures) ... ok
+test_get_self_atari_size_cap (tests.test_preprocessing.TestPreprocessingFeatures) ... ok
+test_get_sensibleness (tests.test_preprocessing.TestPreprocessingFeatures) ... ok
+test_get_turns_since (tests.test_preprocessing.TestPreprocessingFeatures) ... ok
+test_two_escapes (tests.test_preprocessing.TestPreprocessingFeatures) ... ok
+testGradientDirectionChangesWithGameResult (tests.test_reinforcement_policy_trainer.TestReinforcementPolicyTrainer) ... C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(5, 5), kernel_constraint=None, bias_regularizer=None, name="convolution2d_1", filters=16, padding="same", batch_input_shape=[None, 12,..., activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", input_dtype="float32", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_2", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_3", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_4", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_5", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(1, 1), kernel_constraint=None, bias_regularizer=None, name="convolution2d_6", filters=1, padding="same", activation="linear", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\utils\generic_utils.py:135: DeprecationWarning: inspect.getargspec() is deprecated, use inspect.signature() instead
+  arg_spec = inspect.getargspec(cls.from_config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(5, 5), kernel_constraint=None, bias_regularizer=None, name="convolution2d_1", filters=16, padding="same", batch_input_shape=[None, 12,..., activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", input_dtype="float32", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_2", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_3", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_4", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_5", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(1, 1), kernel_constraint=None, bias_regularizer=None, name="convolution2d_6", filters=1, padding="same", activation="linear", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\utils\generic_utils.py:135: DeprecationWarning: inspect.getargspec() is deprecated, use inspect.signature() instead
+  arg_spec = inspect.getargspec(cls.from_config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(5, 5), kernel_constraint=None, bias_regularizer=None, name="convolution2d_1", filters=16, padding="same", batch_input_shape=[None, 12,..., activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", input_dtype="float32", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_2", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_3", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_4", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_5", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(1, 1), kernel_constraint=None, bias_regularizer=None, name="convolution2d_6", filters=1, padding="same", activation="linear", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\utils\generic_utils.py:135: DeprecationWarning: inspect.getargspec() is deprecated, use inspect.signature() instead
+  arg_spec = inspect.getargspec(cls.from_config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(5, 5), kernel_constraint=None, bias_regularizer=None, name="convolution2d_1", filters=16, padding="same", batch_input_shape=[None, 12,..., activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", input_dtype="float32", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_2", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_3", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_4", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_5", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(1, 1), kernel_constraint=None, bias_regularizer=None, name="convolution2d_6", filters=1, padding="same", activation="linear", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\utils\generic_utils.py:135: DeprecationWarning: inspect.getargspec() is deprecated, use inspect.signature() instead
+  arg_spec = inspect.getargspec(cls.from_config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(5, 5), kernel_constraint=None, bias_regularizer=None, name="convolution2d_1", filters=16, padding="same", batch_input_shape=[None, 12,..., activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", input_dtype="float32", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_2", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_3", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_4", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_5", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(1, 1), kernel_constraint=None, bias_regularizer=None, name="convolution2d_6", filters=1, padding="same", activation="linear", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+ok
+testLoseDecreasesMoveProbability (tests.test_reinforcement_policy_trainer.TestReinforcementPolicyTrainer) ... C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\utils\generic_utils.py:135: DeprecationWarning: inspect.getargspec() is deprecated, use inspect.signature() instead
+  arg_spec = inspect.getargspec(cls.from_config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(5, 5), kernel_constraint=None, bias_regularizer=None, name="convolution2d_1", filters=16, padding="same", batch_input_shape=[None, 12,..., activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", input_dtype="float32", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_2", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_3", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_4", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_5", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(1, 1), kernel_constraint=None, bias_regularizer=None, name="convolution2d_6", filters=1, padding="same", activation="linear", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+ok
+testRunNGamesUpdatesWeights (tests.test_reinforcement_policy_trainer.TestReinforcementPolicyTrainer) ... ok
+testTrain (tests.test_reinforcement_policy_trainer.TestReinforcementPolicyTrainer) ... ok
+testWinIncreasesMoveProbability (tests.test_reinforcement_policy_trainer.TestReinforcementPolicyTrainer) ... ok
+testResumeLearning (tests.test_reinforcement_value_trainer.TestCNNValue) ... C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(5, 5), kernel_constraint=None, bias_regularizer=None, name="convolution2d_1", filters=16, padding="same", batch_input_shape=[None, 49,..., activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", input_dtype="float32", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(3, 3), kernel_constraint=None, bias_regularizer=None, name="convolution2d_6", filters=16, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Conv2D` call to the Keras 2 API: `Conv2D(bias_constraint=None, trainable=True, use_bias=True, strides=[1, 1], kernel_size=(1, 1), kernel_constraint=None, bias_regularizer=None, name="convolution2d_7", filters=1, padding="same", activation="relu", kernel_regularizer=None, kernel_initializer="uniform", data_format="channels_first", activity_regularizer=None)`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(kernel_constraint=None, name="dense_1", bias_regularizer=None, bias_constraint=None, use_bias=True, trainable=True, activity_regularizer=None, kernel_regularizer=None, units=256, kernel_initializer="uniform", input_dim=361, activation="relu")`
+  return cls(**config)
+C:\Users\1\AppData\Roaming\Python\Python35\site-packages\keras\engine\topology.py:1231: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(kernel_constraint=None, name="dense_2", bias_regularizer=None, bias_constraint=None, use_bias=True, trainable=True, activity_regularizer=None, kernel_regularizer=None, units=1, kernel_initializer="uniform", input_dim=256, activation="tanh")`
+  return cls(**config)
+ok
+testStateAmount (tests.test_reinforcement_value_trainer.TestCNNValue) ... ok
+testTrain (tests.test_reinforcement_value_trainer.TestCNNValue) ... ok
+test_ouput_shape (tests.test_reinforcement_value_trainer.TestCNNValue) ... ok
+test_save_load (tests.test_reinforcement_value_trainer.TestCNNValue) ... ok
+testResumeLearning (tests.test_supervised_policy_trainer.TestSupervisedPolicyTrainer) ... ok
+testStateAmount (tests.test_supervised_policy_trainer.TestSupervisedPolicyTrainer) ... ok
+testTrain (tests.test_supervised_policy_trainer.TestSupervisedPolicyTrainer) ... ok
+test_batch_eval_state (tests.test_value.TestCNNValue) ... ok
+test_default_value (tests.test_value.TestCNNValue) ... ok
+test_output_size (tests.test_value.TestCNNValue) ... ok
+test_save_load (tests.test_value.TestCNNValue) ... ok
+test_greedy_player (tests.test_value.TestValuePlayers) ... ok
+test_probabilistic_player (tests.test_value.TestValuePlayers) ... ok
+test_sensible_greedy (tests.test_value.TestValuePlayers) ... ok
+test_sensible_probabilistic (tests.test_value.TestValuePlayers) ... ok
+
+======================================================================
+ERROR: test_run_commands (tests.test_gtp_wrapper.TestGTPProcess)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\1\Downloads\RocAlphaGo-develop 2017 HuiLo Mochnoe\RocAlphaGo-cython-keras2\tests\test_gtp_wrapper.py", line 25, in test_run_commands
+    gtp_proc.start()
+  File "C:\Users\1\Anaconda3_4_2_0\envs\keras2\lib\multiprocessing\process.py", line 105, in start
+    self._popen = self._Popen(self)
+  File "C:\Users\1\Anaconda3_4_2_0\envs\keras2\lib\multiprocessing\context.py", line 212, in _Popen
+    return _default_context.get_context().Process._Popen(process_obj)
+  File "C:\Users\1\Anaconda3_4_2_0\envs\keras2\lib\multiprocessing\context.py", line 313, in _Popen
+    return Popen(process_obj)
+  File "C:\Users\1\Anaconda3_4_2_0\envs\keras2\lib\multiprocessing\popen_spawn_win32.py", line 66, in __init__
+    reduction.dump(process_obj, to_child)
+  File "C:\Users\1\Anaconda3_4_2_0\envs\keras2\lib\multiprocessing\reduction.py", line 59, in dump
+    ForkingPickler(file, protocol).dump(obj)
+AttributeError: Can't pickle local object 'TestGTPProcess.test_run_commands.<locals>.stdin_simulator'
+
+======================================================================
+FAIL: test_positional_superko (tests.test_gamestate.TestKo)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\1\Downloads\RocAlphaGo-develop 2017 HuiLo Mochnoe\RocAlphaGo-cython-keras2\tests\test_gamestate.py", line 80, in test_positional_superko
+    self.assertFalse(gs.is_legal((1, 0)))
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 74 tests in 478.206s
+
+FAILED (failures=1, errors=1)
+2017-06-20 14:34:46.464198: W c:\tf_jenkins\home\workspace\release-win\device\gpu\os\windows\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-20 14:34:46.464226: W c:\tf_jenkins\home\workspace\release-win\device\gpu\os\windows\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-20 14:34:46.464233: W c:\tf_jenkins\home\workspace\release-win\device\gpu\os\windows\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE3 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-20 14:34:46.464240: W c:\tf_jenkins\home\workspace\release-win\device\gpu\os\windows\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-20 14:34:46.464246: W c:\tf_jenkins\home\workspace\release-win\device\gpu\os\windows\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-20 14:34:46.464253: W c:\tf_jenkins\home\workspace\release-win\device\gpu\os\windows\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-20 14:34:46.464259: W c:\tf_jenkins\home\workspace\release-win\device\gpu\os\windows\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-20 14:34:46.964680: I c:\tf_jenkins\home\workspace\release-win\device\gpu\os\windows\tensorflow\core\common_runtime\gpu\gpu_device.cc:887] Found device 0 with properties: 
+name: GeForce GTX 760
+major: 3 minor: 0 memoryClockRate (GHz) 1.0845
+pciBusID 0000:01:00.0
+Total memory: 2.00GiB
+Free memory: 1.65GiB
+2017-06-20 14:34:46.964705: I c:\tf_jenkins\home\workspace\release-win\device\gpu\os\windows\tensorflow\core\common_runtime\gpu\gpu_device.cc:908] DMA: 0 
+2017-06-20 14:34:46.964711: I c:\tf_jenkins\home\workspace\release-win\device\gpu\os\windows\tensorflow\core\common_runtime\gpu\gpu_device.cc:918] 0:   Y 
+2017-06-20 14:34:46.964740: I c:\tf_jenkins\home\workspace\release-win\device\gpu\os\windows\tensorflow\core\common_runtime\gpu\gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 760, pci bus id: 0000:01:00.0)

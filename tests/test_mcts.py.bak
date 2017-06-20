@@ -119,7 +119,7 @@ dummy_distribution = dummy_distribution / dummy_distribution.sum()
 
 def dummy_policy(state):
     moves = state.get_legal_moves(include_eyes=False)
-    return list(zip(moves, dummy_distribution))
+    return zip(moves, dummy_distribution)
 
 
 # Rollout is a clone of the policy function.

@@ -133,13 +133,13 @@ class threading_shuffled_hdf5_batch_generator:
             # return state, action and transformation
             return state, action, training_sample[1]
 
-    def next(self):
+    def __next__(self):
         state_batch_shape = (self.batch_size,) + self.state_dataset.shape[1:]
         game_size = state_batch_shape[-1]
         Xbatch = np.zeros(state_batch_shape)
         Ybatch = np.zeros((self.batch_size, game_size * game_size))
 
-        for batch_idx in xrange(self.batch_size):
+        for batch_idx in range(self.batch_size):
             state, action, transformation = self.next_indice()
 
             # get rotation symmetry belonging to state
@@ -214,8 +214,8 @@ class LrStepDecayCallback(Callback):
 
         # print new learning rate if verbose
         if self.verbose:
-            print("\nBatch: " + str(self.metadata["current_batch"]) +
-                  " New learning rate: " + str(new_lr))
+            print(("\nBatch: " + str(self.metadata["current_batch"]) +
+                  " New learning rate: " + str(new_lr)))
 
     def on_train_begin(self, logs={}):
         # set initial learning rate
@@ -343,7 +343,7 @@ def create_and_save_shuffle_indices(train_val_test, max_validation,
         seperate those sets and save them to seperate files.
     """
 
-    symmetries = TRANSFORMATION_INDICES.values()
+    symmetries = list(TRANSFORMATION_INDICES.values())
 
     # Create an array with a unique row for each combination of a training example
     # and a symmetry.
@@ -404,7 +404,7 @@ def load_train_val_test_indices(verbose, arg_symmetries, dataset_length, batch_s
     # used symmetries
     if arg_symmetries == "all":
         # add all symmetries
-        symmetries = TRANSFORMATION_INDICES.values()
+        symmetries = list(TRANSFORMATION_INDICES.values())
     elif arg_symmetries == "none":
         # only add standart orientation
         symmetries = [TRANSFORMATION_INDICES["noop"]]
@@ -413,7 +413,7 @@ def load_train_val_test_indices(verbose, arg_symmetries, dataset_length, batch_s
         symmetries = [TRANSFORMATION_INDICES[name] for name in arg_symmetries.strip().split(",")]
 
     if verbose:
-        print("Used symmetries: " + arg_symmetries)
+        print(("Used symmetries: " + arg_symmetries))
 
     # remove symmetries not used during current run
     if len(symmetries) != len(TRANSFORMATION_INDICES):
@@ -430,13 +430,13 @@ def load_train_val_test_indices(verbose, arg_symmetries, dataset_length, batch_s
 
     if verbose:
         print("dataset loaded")
-        print("\t%d total positions" % dataset_length)
-        print("\t%d total samples" % (dataset_length * len(symmetries)))
-        print("\t%d total samples check" % (len(train_indices) +
-              len(val_indices) + len(test_indices)))
-        print("\t%d training samples" % len(train_indices))
-        print("\t%d validation samples" % len(val_indices))
-        print("\t%d test samples" % len(test_indices))
+        print(("\t%d total positions" % dataset_length))
+        print(("\t%d total samples" % (dataset_length * len(symmetries))))
+        print(("\t%d total samples check" % (len(train_indices) +
+              len(val_indices) + len(test_indices))))
+        print(("\t%d training samples" % len(train_indices)))
+        print(("\t%d validation samples" % len(val_indices)))
+        print(("\t%d test samples" % len(test_indices)))
 
     return train_indices, val_indices, test_indices
 
@@ -462,8 +462,8 @@ def set_training_settings(resume, args, metadata, dataset_length):
         # check if argument model and meta model are the same
         if metadata["model_file"] != args.model:
             # verify if user really wants to use new model file
-            print("the model file is different from the model file used last run: " +
-                  metadata["model_file"] + ". It might be different than the old one.")
+            print(("the model file is different from the model file used last run: " +
+                  metadata["model_file"] + ". It might be different than the old one."))
             if args.override or not confirm("Are you sure you want to use the new model?", False):  # noqa: E501
                 raise ValueError("User abort after mismatch model files.")
 
@@ -680,15 +680,15 @@ def start_training(args):
 
     if args.verbose:
         if resume:
-            print("trying to resume from %s with weights %s" %
+            print(("trying to resume from %s with weights %s" %
                   (args.out_directory,
-                   os.path.join(args.out_directory, FOLDER_WEIGHT, args.weights)))
+                   os.path.join(args.out_directory, FOLDER_WEIGHT, args.weights))))
         else:
             if os.path.exists(args.out_directory):
-                print("directory %s exists. any previous data will be overwritten" %
-                      args.out_directory)
+                print(("directory %s exists. any previous data will be overwritten" %
+                      args.out_directory))
             else:
-                print("starting fresh output directory %s" % args.out_directory)
+                print(("starting fresh output directory %s" % args.out_directory))
 
     # create all directories
     # main folder
@@ -710,8 +710,8 @@ def start_training(args):
             metadata = json.load(f)
 
         if args.verbose:
-            print("previous metadata loaded: %d epochs. new epochs will be appended." %
-                  len(metadata["epoch_logs"]))
+            print(("previous metadata loaded: %d epochs. new epochs will be appended." %
+                  len(metadata["epoch_logs"])))
     else:
         # create new metadata
         metadata = {
@@ -764,8 +764,8 @@ def resume_training(args):
         metadata["epochs"] = args.epochs
 
     if args.verbose:
-        print("trying to resume training from %s with weights %s" %
-              (meta_file, os.path.join(args.out_directory, FOLDER_WEIGHT, weight_file)))
+        print(("trying to resume training from %s with weights %s" %
+              (meta_file, os.path.join(args.out_directory, FOLDER_WEIGHT, weight_file))))
 
     # start training
     train(metadata, args.out_directory, args.verbose, weight_file, meta_file)

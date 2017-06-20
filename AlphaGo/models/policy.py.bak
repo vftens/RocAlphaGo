@@ -23,7 +23,7 @@ class CNNPolicy(NeuralNetBase):
         # get network activations at legal move locations
         distribution = nn_output[move_indices]
         distribution = distribution / distribution.sum()
-        return list(zip(moves, distribution))
+        return zip(moves, distribution)
 
     def batch_eval_state(self, states, moves_lists=None):
         """Given a list of states, evaluates them all at once to make best use of GPU
@@ -292,8 +292,8 @@ class ResnetPolicy(CNNPolicy):
         while layer < params['layers']:
             convolution_path, layer = add_resnet_unit(convolution_path, layer, **params)
         if layer > params['layers']:
-            print(("Due to skipping, ended with {} layers instead of {}"
-                  .format(layer, params['layers'])))
+            print("Due to skipping, ended with {} layers instead of {}"
+                  .format(layer, params['layers']))
 
         # since each layer's activation was linear, need one more ReLu
         convolution_path = Activation('relu')(convolution_path)

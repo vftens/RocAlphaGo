@@ -66,10 +66,13 @@ class threading_shuffled_hdf5_batch_generator:
         # check if seed is provided or generate random
         if seed is None:
             # create random seed
-            self.metadata['generator_seed'] = np.random.random_integers(4294967295)
+            self.metadata['generator_seed'] = np.random.randint(1, 4294967295, dtype=np.int64) #.astype(np.int32)  # random_integers(4294967295)
 
         # feed numpy.random with seed in order to continue with certain batch
-        np.random.seed(self.metadata['generator_seed'])
+        y=self.metadata['generator_seed']
+        np.random.seed(y)
+        # y=y.astype(np.float64)
+        # print('y=', y)
         # shuffle indices according to seed
         if not self.validation:
             np.random.shuffle(self.indices)
@@ -122,12 +125,12 @@ class threading_shuffled_hdf5_batch_generator:
             # return state, action and transformation
             return state, action, training_sample[1]
 
-    def next(self):
+    def __next__(self):
         state_batch_shape = (self.batch_size,) + self.state_dataset.shape[1:]
         Xbatch = np.zeros(state_batch_shape)
         Ybatch = np.zeros(self.batch_size)
 
-        for batch_idx in xrange(self.batch_size):
+        for batch_idx in range(self.batch_size):
             state, action, transformation = self.next_indice()
 
             # get rotation symmetry belonging to state
@@ -200,8 +203,8 @@ class LrStepDecayCallback(Callback):
 
         # print new learning rate if verbose
         if self.verbose:
-            print("\nBatch: " + str(self.model.optimizer.current_batch) +
-                  " New learning rate: " + str(new_lr))
+            print(("\nBatch: " + str(self.model.optimizer.current_batch) +
+                  " New learning rate: " + str(new_lr)))
 
     def on_train_begin(self, logs={}):
         # set initial learning rate
@@ -259,7 +262,7 @@ class EpochDataSaverCallback(Callback):
 
         # save meta to file
         with open(self.file, "w") as f:
-            json.dump(self.metadata, f, indent=2)
+            json.dump(self.metadata, f, indent=2, cls=MyEncoder)
 
         # save model to file with correct epoch
         save_file = os.path.join(self.root, FOLDER_WEIGHT,
@@ -298,7 +301,7 @@ def validate_feature_planes(verbose, dataset, model_features):
 
 def load_indices_from_file(shuffle_file):
     # load indices from shuffle_file
-    with open(shuffle_file, "r") as f:
+    with open(shuffle_file, "rb") as f:
         indices = np.load(f)
 
     return indices
@@ -306,7 +309,7 @@ def load_indices_from_file(shuffle_file):
 
 def save_indices_to_file(shuffle_file, indices):
     # save indices to shuffle_file
-    with open(shuffle_file, "w") as f:
+    with open(shuffle_file, "wb") as f:
         np.save(f, indices)
 
 
@@ -331,7 +334,7 @@ def create_and_save_shuffle_indices(train_val_test, max_validation,
         seperate those sets and save them to seperate files.
     """
 
-    symmetries = TRANSFORMATION_INDICES.values()
+    symmetries = list(TRANSFORMATION_INDICES.values())
 
     # Create an array with a unique row for each combination of a training example
     # and a symmetry.
@@ -392,7 +395,7 @@ def load_train_val_test_indices(verbose, arg_symmetries, dataset_length, batch_s
     # used symmetries
     if arg_symmetries == "all":
         # add all symmetries
-        symmetries = TRANSFORMATION_INDICES.values()
+        symmetries = list(TRANSFORMATION_INDICES.values())
     elif arg_symmetries == "none":
         # only add standart orientation
         symmetries = [TRANSFORMATION_INDICES["noop"]]
@@ -401,7 +404,7 @@ def load_train_val_test_indices(verbose, arg_symmetries, dataset_length, batch_s
         symmetries = [TRANSFORMATION_INDICES[name] for name in arg_symmetries.strip().split(",")]
 
     if verbose:
-        print("Used symmetries: " + arg_symmetries)
+        print(("Used symmetries: " + arg_symmetries))
 
     # remove symmetries not used during current run
     if len(symmetries) != len(TRANSFORMATION_INDICES):
@@ -418,13 +421,13 @@ def load_train_val_test_indices(verbose, arg_symmetries, dataset_length, batch_s
 
     if verbose:
         print("dataset loaded")
-        print("\t%d total positions" % dataset_length)
-        print("\t%d total samples" % (dataset_length * len(symmetries)))
-        print("\t%d total samples check" % (len(train_indices) +
-              len(val_indices) + len(test_indices)))
-        print("\t%d training samples" % len(train_indices))
-        print("\t%d validation samples" % len(val_indices))
-        print("\t%d test samples" % len(test_indices))
+        print(("\t%d total positions" % dataset_length))
+        print(("\t%d total samples" % (dataset_length * len(symmetries))))
+        print(("\t%d total samples check" % (len(train_indices) +
+              len(val_indices) + len(test_indices))))
+        print(("\t%d training samples" % len(train_indices)))
+        print(("\t%d validation samples" % len(val_indices)))
+        print(("\t%d test samples" % len(test_indices)))
 
     return train_indices, val_indices, test_indices
 
@@ -450,8 +453,8 @@ def set_training_settings(resume, args, metadata, dataset_length):
         # check if argument model and meta model are the same
         if metadata["model_file"] != args.model:
             # verify if user really wants to use new model file
-            print("the model file is different from the model file used last run: " +
-                  metadata["model_file"] + ". It might be different than the old one.")
+            print(("the model file is different from the model file used last run: " +
+                  metadata["model_file"] + ". It might be different than the old one."))
             if args.override or not confirm("Are you sure you want to use the new model?", False):  # noqa: E501
                 raise ValueError("User abort after mismatch model files.")
 
@@ -656,12 +659,11 @@ def train(metadata, out_directory, verbose, weight_file, meta_file):
 
     model.fit_generator(
         generator=train_data_generator,
-        samples_per_epoch=metadata["epoch_length"],
-        nb_epoch=(metadata["epochs"] - len(metadata["epoch_logs"])),
+        steps_per_epoch=( metadata["epoch_length"] / metadata["batch_size"] ),
+        epochs=(metadata["epochs"] - len(metadata["epoch_logs"])),
         callbacks=[meta_writer, lr_scheduler_callback],
         validation_data=val_data_generator,
-        nb_val_samples=len(val_indices))
-
+        validation_steps=( len(val_indices) / metadata["batch_size"] ) )
 
 def start_training(args):
     # set resume
@@ -669,15 +671,15 @@ def start_training(args):
 
     if args.verbose:
         if resume:
-            print("trying to resume from %s with weights %s" %
+            print(("trying to resume from %s with weights %s" %
                   (args.out_directory,
-                   os.path.join(args.out_directory, FOLDER_WEIGHT, args.weights)))
+                   os.path.join(args.out_directory, FOLDER_WEIGHT, args.weights))))
         else:
             if os.path.exists(args.out_directory):
-                print("directory %s exists. any previous data will be overwritten" %
-                      args.out_directory)
+                print(("directory %s exists. any previous data will be overwritten" %
+                      args.out_directory))
             else:
-                print("starting fresh output directory %s" % args.out_directory)
+                print(("starting fresh output directory %s" % args.out_directory))
 
     # create all directories
     # main folder
@@ -699,8 +701,8 @@ def start_training(args):
             metadata = json.load(f)
 
         if args.verbose:
-            print("previous metadata loaded: %d epochs. new epochs will be appended." %
-                  len(metadata["epoch_logs"]))
+            print(("previous metadata loaded: %d epochs. new epochs will be appended." %
+                  len(metadata["epoch_logs"])))
     else:
         # create new metadata
         metadata = {
@@ -750,8 +752,8 @@ def resume_training(args):
         metadata["epochs"] = args.epochs
 
     if args.verbose:
-        print("trying to resume training from %s with weights %s" %
-              (meta_file, os.path.join(args.out_directory, FOLDER_WEIGHT, weight_file)))
+        print(("trying to resume training from %s with weights %s" %
+              (meta_file, os.path.join(args.out_directory, FOLDER_WEIGHT, weight_file))))
 
     # start training
     train(metadata, args.out_directory, args.verbose, weight_file, meta_file)
@@ -809,6 +811,16 @@ def handle_arguments(cmd_line_args=None):
     # execute function (train or resume)
     args.func(args)
 
+class MyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        else:
+            return super(MyEncoder, self).default(obj)
 
 if __name__ == '__main__':
     handle_arguments()
