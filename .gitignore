@@ -10,3 +10,5 @@
 src/
 benchmarks/data/
 /.idea
+*.so
+*.o
