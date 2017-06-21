@@ -3,6 +3,11 @@ import os
 from distutils.core import setup
 from Cython.Build import cythonize
 
+import sys  
+
+reload(sys)  
+sys.setdefaultencoding('utf8')
+
 setup(
     
     name = 'RocAlphaGo',
