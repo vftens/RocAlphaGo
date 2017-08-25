@@ -5,14 +5,16 @@ from Cython.Build import cythonize
 
 import sys  
 
-reload(sys)  
-sys.setdefaultencoding('utf8')
+#reload(sys)  
+#sys.setdefaultencoding('utf8')
 
 setup(
-    
-    name = 'RocAlphaGo',
+
+    name='RocAlphaGo',
     # list with files to be cythonized
-    ext_modules = cythonize( [ "AlphaGo/go.pyx", "AlphaGo/go_data.pyx", "AlphaGo/preprocessing/preprocessing.pyx" ] ),
+    ext_modules=cythonize(["AlphaGo/go.pyx", "AlphaGo/go_data.pyx",
+                           "AlphaGo/preprocessing/preprocessing.pyx",
+                           "AlphaGo/preprocessing/preprocessing_rollout.pyx"]),
     # include numpy
     include_dirs=[numpy.get_include(),
                   os.path.join(numpy.get_include(), 'numpy')]
@@ -29,7 +31,4 @@ setup(
 
    you can run all unittests to verify everything works as it should:
    python -m unittest discover
-   
-   nb. right now one test will fail: Super-ko
-
 """

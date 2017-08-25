@@ -12,3 +12,5 @@ benchmarks/data/
 /.idea
 *.so
 *.o
+err*.txt
+

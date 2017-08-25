@@ -75,13 +75,11 @@ class threading_shuffled_hdf5_batch_generator:
         # check if seed is provided or generate random
         if seed is None:
             # create random seed
-            self.metadata['generator_seed'] = np.random.randint(1, 4294967295, dtype=np.int64)  #.astype(np.int32)
+            #self.metadata['generator_seed'] = np.random.random_integers(4294967295)
+            self.metadata['generator_seed'] = np.random.randint(1, 4294967295, dtype=np.int64)  
 
         # feed numpy.random with seed in order to continue with certain batch
-        yy=self.metadata['generator_seed']
-        np.random.seed(yy)  #
-        # yy=yy.astype(np.float64)
-        # print('yy=', yy)
+        np.random.seed(self.metadata['generator_seed'])
         # shuffle indices according to seed
         if not self.validation:
             np.random.shuffle(self.indices)
@@ -282,6 +280,7 @@ class EpochDataSaverCallback(Callback):
 
         # save meta to file
         with open(self.file, "w") as f:
+            #json.dump(self.metadata, f, indent=2)
             json.dump(self.metadata, f, indent=2, cls=MyEncoder)
 
         # save model to file with correct epoch
@@ -669,11 +668,11 @@ def train(metadata, out_directory, verbose, weight_file, meta_file):
 
     model.fit_generator(
         generator=train_data_generator,
-        steps_per_epoch=( metadata["epoch_length"] / metadata["batch_size"] ),
+        steps_per_epoch=(metadata["epoch_length"] / metadata["batch_size"]),
         epochs=(metadata["epochs"] - len(metadata["epoch_logs"])),
         callbacks=[meta_writer, lr_scheduler_callback],
         validation_data=val_data_generator,
-        validation_steps=( len(val_indices) / metadata["batch_size"] ) )
+        validation_steps=(len(val_indices) / metadata["batch_size"]))
 
 
 def start_training(args):
@@ -820,7 +819,6 @@ def handle_arguments(cmd_line_args=None):
 
     # execute function (train or resume)
     args.func(args)
-
 
 class MyEncoder(json.JSONEncoder):
     def default(self, obj):

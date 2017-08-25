@@ -74,10 +74,11 @@ class threading_shuffled_hdf5_batch_generator:
         # check if seed is provided or generate random
         if seed is None:
             # create random seed
-            self.metadata['generator_seed'] = np.random.random_integers(4294967295)
+            #self.metadata['generator_seed'] = np.random.random_integers(4294967295)
+            self.metadata['generator_seed'] = np.random.randint(1, 4294967295, dtype=np.int64) 
 
-        #print( )
-        #print("shuffle " + str(self.validation))
+        # print()
+        # print("shuffle " + str(self.validation))
         # feed numpy.random with seed in order to continue with certain batch
         np.random.seed(self.metadata['generator_seed'])
         # shuffle indices according to seed
@@ -271,7 +272,8 @@ class EpochDataSaverCallback(Callback):
 
         # save meta to file
         with open(self.file, "w") as f:
-            json.dump(self.metadata, f, indent=2)
+            #json.dump(self.metadata, f, indent=2)
+            json.dump(self.metadata, f, indent=2, cls=MyEncoder)
 
         # save model to file with correct epoch
         save_file = os.path.join(self.root, FOLDER_WEIGHT,
@@ -310,7 +312,7 @@ def validate_feature_planes(verbose, dataset, model_features):
 
 def load_indices_from_file(shuffle_file):
     # load indices from shuffle_file
-    with open(shuffle_file, "r") as f:
+    with open(shuffle_file, "rb") as f:
         indices = np.load(f)
 
     return indices
@@ -318,7 +320,7 @@ def load_indices_from_file(shuffle_file):
 
 def save_indices_to_file(shuffle_file, indices):
     # save indices to shuffle_file
-    with open(shuffle_file, "w") as f:
+    with open(shuffle_file, "wb") as f:
         np.save(f, indices)
 
 
@@ -646,14 +648,14 @@ def train(metadata, out_directory, verbose, weight_file, meta_file):
         validation=True)
 
     # check if step decay has to be applied
-    if metadata["decay_every"] is None:
-        # use normal decay without momentum
-        lr_scheduler_callback = LrDecayCallback(metadata)
-    else:
-        # use step decay
-        lr_scheduler_callback = LrStepDecayCallback(metadata, verbose)
+    # if metadata["decay_every"] is None:
+    # use normal decay without momentum
+    # lr_scheduler_callback = LrDecayCallback(metadata)
+    # else:
+    # use step decay
+    # lr_scheduler_callback = LrStepDecayCallback(metadata, verbose)
 
-    #sgd = SGD(lr=metadata["learning_rate"])
+    # sgd = SGD(lr=metadata["learning_rate"])
     sgd = Adam(lr=0.001, beta_1=0.99, beta_2=0.999, epsilon=1e-08, decay=0.0)
     model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=["accuracy"])
 
@@ -671,7 +673,7 @@ def train(metadata, out_directory, verbose, weight_file, meta_file):
         callbacks=[meta_writer],
         validation_data=val_data_generator,
         nb_val_samples=len(val_indices),
-        max_q_size = 5)
+        max_q_size=5)
 
 
 def start_training(args):
@@ -827,6 +829,17 @@ def handle_arguments(cmd_line_args=None):
 
     # execute function (train or resume)
     args.func(args)
+
+class MyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        else:
+            return super(MyEncoder, self).default(obj)
 
 
 if __name__ == '__main__':

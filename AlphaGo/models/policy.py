@@ -103,15 +103,14 @@ class CNNPolicy(NeuralNetBase):
             activation='relu',
             padding='same',
             kernel_constraint=None,
-            activity_regularizer=None, 
+            activity_regularizer=None,
             trainable=True,
             strides=[1, 1],
             use_bias=True,
-            bias_regularizer=None, 
-            bias_constraint=None, 
+            bias_regularizer=None,
+            bias_constraint=None,
             data_format="channels_first",
             kernel_regularizer=None))
-            
 
         # create all other layers
         for i in range(2, params["layers"] + 1):
@@ -130,15 +129,15 @@ class CNNPolicy(NeuralNetBase):
                 activation='relu',
                 padding='same',
                 kernel_constraint=None,
-                activity_regularizer=None, 
+                activity_regularizer=None,
                 trainable=True,
                 strides=[1, 1],
                 use_bias=True,
-                bias_regularizer=None, 
-                bias_constraint=None, 
+                bias_regularizer=None,
+                bias_constraint=None,
                 data_format="channels_first",
                 kernel_regularizer=None))
-                
+
         # the last layer maps each <filters_per_layer> feature to a number
         network.add(Conv2D(
             filters=1,
@@ -146,15 +145,15 @@ class CNNPolicy(NeuralNetBase):
             kernel_initializer='uniform',
             padding='same',
             kernel_constraint=None,
-            activity_regularizer=None, 
+            activity_regularizer=None,
             trainable=True,
             strides=[1, 1],
             use_bias=True,
-            bias_regularizer=None, 
-            bias_constraint=None, 
+            bias_regularizer=None,
+            bias_constraint=None,
             data_format="channels_first",
             kernel_regularizer=None))
-            
+
         # reshape output to be board x board
         network.add(Flatten())
         # add a bias to each board location
@@ -229,20 +228,20 @@ class ResnetPolicy(CNNPolicy):
         convolution_path = Conv2D(
             input_shape=(),
             filters=params["filters_per_layer"],
-            kernel_size=(params["filter_width_1"],params["filter_width_1"]),
+            kernel_size=(params["filter_width_1"], params["filter_width_1"]),
             kernel_initializer='uniform',
             activation='linear',  # relu activations done inside resnet modules
             padding='same',
             kernel_constraint=None,
-            activity_regularizer=None, 
+            activity_regularizer=None,
             trainable=True,
             strides=[1, 1],
             use_bias=True,
-            bias_regularizer=None, 
-            bias_constraint=None, 
+            bias_regularizer=None,
+            bias_constraint=None,
             data_format="channels_first",
             kernel_regularizer=None)(model_input)
-                
+
         def add_resnet_unit(path, K, **params):
             """Add a resnet unit to path starting at layer 'K',
             adding as many (ReLU + Conv2D) modules as specified by n_skip_K
@@ -274,15 +273,15 @@ class ResnetPolicy(CNNPolicy):
                     activation='linear',
                     padding='same',
                     kernel_constraint=None,
-                    activity_regularizer=None, 
+                    activity_regularizer=None,
                     trainable=True,
                     strides=[1, 1],
                     use_bias=True,
-                    bias_regularizer=None, 
-                    bias_constraint=None, 
+                    bias_regularizer=None,
+                    bias_constraint=None,
                     data_format="channels_first",
                     kernel_regularizer=None)(path)
-                    
+
             # Merge 'input layer' with the path
             path = add([block_input, path])
             return path, K + n_skip
@@ -301,21 +300,21 @@ class ResnetPolicy(CNNPolicy):
         # the last layer maps each <filters_per_layer> featuer to a number
         convolution_path = Conv2D(
             filters=1,
-            kernel_size=( 1, 1 ),
+            kernel_size=(1, 1),
             kernel_initializer='uniform',
             name="policy_conv_last",
             padding='same',
             activation="linear",
             kernel_constraint=None,
-            activity_regularizer=None, 
+            activity_regularizer=None,
             trainable=True,
             strides=[1, 1],
             use_bias=True,
-            bias_regularizer=None, 
-            bias_constraint=None, 
+            bias_regularizer=None,
+            bias_constraint=None,
             data_format="channels_first",
             kernel_regularizer=None)(convolution_path)
-                        
+
         # flatten output
         network_output = Flatten()(convolution_path)
         # add a bias to each board location
