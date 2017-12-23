@@ -4,6 +4,8 @@ from AlphaGo import go
 import multiprocessing
 from AlphaGo.go import GameState
 from AlphaGo.util import save_gamestate_to_sgf
+from builtins import input
+
 
 
 def run_gnugo(sgf_file_name, command):
@@ -146,7 +148,7 @@ def run_gtp(player_obj, inpt_fn=None, name="Gtp Player", version="0.0"):
     gtp_game = GTPGameConnector(player_obj)
     gtp_engine = ExtendedGtpEngine(gtp_game, name, version)
     if inpt_fn is None:
-        inpt_fn = raw_input
+        inpt_fn = input
 
     sys.stderr.write("GTP engine ready\n")
     sys.stderr.flush()

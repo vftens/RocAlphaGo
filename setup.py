@@ -13,8 +13,10 @@ setup(
     name='RocAlphaGo',
     # list with files to be cythonized
     ext_modules=cythonize(["AlphaGo/go.pyx", "AlphaGo/go_data.pyx",
-                           "AlphaGo/preprocessing/preprocessing.pyx",
-                           "AlphaGo/preprocessing/preprocessing_rollout.pyx"]),
+                           "AlphaGo/preprocessing/preprocessing.pyx"
+				#,
+                          # "AlphaGo/preprocessing/preprocessing_rollout.pyx"
+			]),
     # include numpy
     include_dirs=[numpy.get_include(),
                   os.path.join(numpy.get_include(), 'numpy')]
