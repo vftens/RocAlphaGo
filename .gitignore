@@ -7,6 +7,7 @@
 !tests/test_data/sgf/*.sgf
 !tests/test_data/hdf5/*.h5
 !tests/test_data/hdf5/*.hdf5
+!RocAlphaGo.data/
 src/
 benchmarks/data/
 /.idea
@@ -15,5 +16,6 @@ benchmarks/data/
 *.exp
 *.lib
 *.obj
+*.pyd
 err*.txt
 
