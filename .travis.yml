@@ -16,6 +16,10 @@ matrix:
           env: KERAS_BACKEND=theano
         - python: 3.6
           env: KERAS_BACKEND=tensorflow
+        - python: 3.7
+          env: KERAS_BACKEND=theano
+        - python: 3.7
+          env: KERAS_BACKEND=tensorflow
 
 # Install packages
 install:
